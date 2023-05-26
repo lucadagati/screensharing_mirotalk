@@ -19,8 +19,22 @@ rm csr.pem
 # https://www.sslchecker.com/certdecoder
 ```
 
-2. Expose `server.js` on `https` using the self-signed certificate, edit the `.env` file
+2. Expose `server.js` on `https`
 
 ```js
-HTTPS = true;
+const isHttps = true;
+```
+
+3. Change on `client.js`
+
+```js
+const isHttps = true;
+
+function getSignalingServer() {
+    if (isHttps) {
+        return 'https://' + 'localhost' + ':' + signalingServerPort;
+        // outside of localhost change it with YOUR-SERVER-DOMAIN
+    }
+    ...
+}
 ```

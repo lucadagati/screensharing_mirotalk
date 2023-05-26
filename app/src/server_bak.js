@@ -53,7 +53,7 @@ const app = express();
 app.use(cors()); // Enable All CORS Requests for all origins
 app.use(compression()); // Compress all HTTP responses using GZip
 
-const isHttps = true; // must be the same to client.js isHttps
+const isHttps = false; // must be the same to client.js isHttps
 const port = process.env.PORT || 3000; // must be the same to client.js signalingServerPort
 
 let io, server, host;
@@ -61,12 +61,12 @@ let io, server, host;
 if (isHttps) {
     const fs = require('fs');
     const options = {
-        key: fs.readFileSync(path.join(__dirname, 'key.pem'), 'utf-8'),
-        cert: fs.readFileSync(path.join(__dirname, 'cert.pem'), 'utf-8'),
+        key: fs.readFileSync(path.join(__dirname, '../ssl/key.pem'), 'utf-8'),
+        cert: fs.readFileSync(path.join(__dirname, '../ssl/cert.pem'), 'utf-8'),
     };
     server = https.createServer(options, app);
     io = new Server().listen(server);
-    host = 'https://' + '192.168.44.181' + ':' + port;
+    host = 'https://' + 'localhost' + ':' + port;
 } else {
     server = http.createServer(app);
     io = new Server().listen(server);
@@ -90,7 +90,6 @@ const turnUsername = process.env.TURN_USERNAME;
 const turnCredential = process.env.TURN_PASSWORD;
 
 const Logger = require('./Logger');
-const { stringify } = require('querystring');
 const log = new Logger('server');
 
 let channels = {}; // collect channels
@@ -137,9 +136,9 @@ app.get(['/newcall'], (req, res) => {
 });
 
 // if not allow video/audio
-//app.get(['/permission'], (req, res) => {
-//    res.sendFile(path.join(__dirname, '../../', 'public/view/permission.html'));
-//});
+app.get(['/permission'], (req, res) => {
+    res.sendFile(path.join(__dirname, '../../', 'public/view/permission.html'));
+});
 
 // privacy policy
 app.get(['/privacy'], (req, res) => {
@@ -172,49 +171,7 @@ app.get('/join/*', (req, res) => {
         log.debug('redirect:' + req.url + ' to ' + url.parse(req.url).pathname);
         res.redirect(url.parse(req.url).pathname);
     } else {
-        var isnotempty = undefined;
-        var noadmin = true;
-        var noadmin2 = true;
-
-        for (var index in peers){
-            isnotempty = index;
-        }
-
-        var JSONpeer = JSON.parse(JSON.stringify(peers));
-        try {
-            for (var index in channels){
-                log.debug("Channels: " + index);
-                for (var index2 in sockets){
-                    log.debug("Index in sockets " + JSONpeer[index][index2]["peer_name"]);
-                    if (JSONpeer[index][index2]["peer_name"].localeCompare("admin") === 0){
-                        noadmin = false;
-                        log.debug("Admin already logged");
-                    }
-                }
-            }
-        } catch (error) {
-        }
-
-        try {
-            for (var index in channels){
-                log.debug("Channels: " + index);
-                for (var index2 in sockets){
-                    log.debug("Index in sockets " + JSONpeer[index][index2]["peer_name"]);
-                    if (JSONpeer[index][index2]["peer_name"].localeCompare("admin2") === 0){
-                        noadmin2 = false;
-                        log.debug("Admin already logged");
-                    }
-                }
-            }
-        } catch (error) {   
-        }
-
-        if (/*isnotempty === undefined ||*/ noadmin /*|| noadmin2*/){
-            log.debug("client1");
-            res.sendFile(path.join(__dirname, '../../', 'public/view/client.html'));}
-        else {
-            log.debug("client2");
-            res.sendFile(path.join(__dirname, '../../', 'public/view/client2.html'));}
+        res.sendFile(path.join(__dirname, '../../', 'public/view/client.html'));
     }
 });
 
@@ -258,7 +215,7 @@ app.post([apiBasePath + '/meeting'], (req, res) => {
  * @returns meeting Room URL
  */
 function getMeetingURL(host) {
-    return 'https' + (host.includes('192.168.44.181') ? '' : 's') + '://' + host;
+    return 'http' + (host.includes('localhost') ? '' : 's') + '://' + host;
 }
 
 // end of MiroTalk API v1
@@ -279,23 +236,7 @@ app.get('*', function (req, res) {
  * Check the functionality of STUN/TURN servers:
  * https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/
  */
-const iceServers = [{ urls: 'stun:stun.l.google.com:19302' },
-{
-    urls: 'turn:192.158.29.39:3478?transport=udp',
-    credential: 'JZEOEt2V3Qb0y27GRntt2u2PAYA=',
-    username: '28224511:1379330808'
-},
-{
-    urls: 'turn:192.158.29.39:3478?transport=udp',
-    credential: 'JZEOEt2V3Qb0y27GRntt2u2PAYA=',
-    username: '28224511:1379330808'
-},
-//    {
-//        urls: 'turn:212.189.207.199:3478',
-//        credential: 'w3br7c',
-//        username: 'studenteunime'
-//    },
-];
+const iceServers = [{ urls: 'stun:stun.l.google.com:19302' }];
 
 if (turnEnabled == 'true') {
     iceServers.push({
