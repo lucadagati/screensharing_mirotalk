@@ -38,23 +38,30 @@
 :root {
     /* common */
     --bg: linear-gradient(to left, #363434, #000000);
+
     --msger-top: 50%;
     --msger-left: 50%;
     --msger-height: 680px;
     --msger-width: 420px;
+
     /* video iframe */
     --iframe-width: 640px;
     --iframe-height: 480px;
+
     /* whiteboard resize */
     --wb-width: 800px;
     --wb-height: 600px;
     --wb-bg: linear-gradient(to left, #1f1e1e, #000000);
+
     /* my settings */
     --mySettings-select-w: 100%;
+
     /* btns hover scale 110% zoom */
     --btns-hover-scale: scale(1.1);
+
     /* video elem border color */
     --elem-border-color: grey 1px solid;
+
     /* left buttons bar vertical default */
     --btns-top: 50%;
     --btns-right: 0%;
@@ -62,6 +69,7 @@
     --btns-margin-left: 0px;
     --btns-width: 40px;
     --btns-flex-direction: column;
+
     /* left buttons bar horizontal
     --btns-top: 95%;
     --btns-right: 25%;
@@ -70,6 +78,7 @@
     --btns-width: 600px;
     --btns-flex-direction: row;
     */
+
     /* neon theme default */
     --body-bg: black;
     --msger-bg: linear-gradient(to left, #383838, #000000);
@@ -84,8 +93,8 @@
     --wb-bg: linear-gradient(to left, #1f1e1e, #000000);
     --wb-hbg: #000000;
     --my-settings-label-color: white;
-    --hover-color: grey;
-    /* rgb(8, 189, 89); */
+    --hover-color: grey; /* rgb(8, 189, 89); */
+
     /* dark theme
     --body-bg: #16171b;
     --msger-bg: linear-gradient(to left, #383838, #000000);
@@ -101,6 +110,7 @@
     --wb-hbg: #000000;
     --my-settings-label-color: white;
     */
+
     /* forest theme
     --body-bg: black;
     --msger-bg: linear-gradient(to left, #383838, #000000);
@@ -116,6 +126,7 @@
     --wb-hbg: #000000;
     --my-settings-label-color: white;
     */
+
     /* sky theme
     --body-bg: black;
     --msger-bg: linear-gradient(to left, #383838, #000000);
@@ -131,6 +142,7 @@
     --wb-hbg: #000000;
     --my-settings-label-color: white;
     */
+
     /* ghost theme
     --body-bg: black;
     --msger-bg: linear-gradient(to left, transparent, rgba(0, 0, 0, 0.7));
@@ -146,6 +158,7 @@
     --wb-hbg: #000000;
     --my-settings-label-color: white;
     */
+
     /* https://developer.mozilla.org/it/docs/Web/CSS/object-fit */
     --video-object-fit: cover;
 }
@@ -174,8 +187,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    opacity: 0;
-    /* make things invisible upon start */
+    opacity: 0; /* make things invisible upon start */
     -webkit-animation: fadeIn ease-in 1;
     -moz-animation: fadeIn ease-in 1;
     animation: fadeIn ease-in 1;
@@ -199,11 +211,9 @@ body {
     left: 60%;
     transform: translate(-50%, -50%);
 }
-
 #loadingDiv h1 {
     font-size: 70px;
 }
-
 #loadingDiv pre {
     font-size: 15px;
 }
@@ -231,7 +241,6 @@ body {
         opacity: 0.5;
     }
 }
-
 @keyframes pulsate {
     0% {
         opacity: 0.5;
@@ -243,7 +252,6 @@ body {
         opacity: 0.5;
     }
 }
-
 @-webkit-keyframes pulsate {
     0% {
         opacity: 0.5;
@@ -266,8 +274,7 @@ body {
     position: absolute;
     padding: 10px;
     background: var(--bg);
-    font-size: small;
-    /* 4 mobile */
+    font-size: small; /* 4 mobile */
     font-weight: bold;
     text-align: center;
     width: 100%;
@@ -290,7 +297,6 @@ body {
     animation-duration: 1s;
     overflow: hidden;
 }
-
 .statusMenu i,
 .statusMenu p,
 .statusMenu h4 {
@@ -299,7 +305,6 @@ body {
     border: none;
     margin-right: 10px;
 }
-
 .statusMenu button {
     float: right;
     margin-right: 3px;
@@ -308,7 +313,6 @@ body {
     display: inline;
     border: none;
 }
-
 .statusMenu p:hover,
 .statusMenu h4:hover,
 .statusMenu button:hover {
@@ -339,20 +343,25 @@ body {
     display: none;
     position: absolute;
     padding: 15px;
+
     top: var(--btns-top);
     right: var(--btns-right);
     left: var(--btns-left);
     margin-left: var(--btns-margin-left);
     width: var(--btns-width);
     flex-direction: var(--btns-flex-direction);
+
     justify-content: space-around;
     grid-gap: 0.4rem;
+
     -webkit-transform: translate(0%, -50%);
     -ms-transform: translate(0%, -50%);
     transform: translate(0%, -50%);
+
     border-radius: 20px;
     background: transparent;
     box-shadow: var(--box-shadow);
+
     -webkit-animation: fadeIn ease-in 1;
     -moz-animation: fadeIn ease-in 1;
     animation: fadeIn ease-in 1;
@@ -399,7 +408,6 @@ body {
 #fullScreenBtn,
 #swapCameraBtn,
 #chatRoomBtn,
-#captionBtn,
 #myHandBtn,
 #whiteboardBtn,
 #fileShareBtn,
@@ -419,7 +427,6 @@ body {
 #fullScreenBtn:hover,
 #swapCameraBtn:hover,
 #chatRoomBtn:hover,
-#captionBtn:hover,
 #myHandBtn:hover,
 #fileShareBtn:hover,
 #whiteboardBtn:hover,
@@ -428,7 +435,6 @@ body {
     color: var(--hover-color);
     transform: var(--btns-hover-scale);
 }
-
 #leaveRoomBtn:hover {
     color: red;
     transform: var(--btns-hover-scale);
@@ -515,7 +521,6 @@ button {
     border-radius: 5px;
     transition: background 0.23s;
 }
-
 .msger-header-options button:hover {
     color: var(--hover-color);
     transform: var(--btns-hover-scale);
@@ -532,18 +537,14 @@ button {
     padding: 10px;
     background: var(--msger-bg);
 }
-
 .msger-chat::-webkit-scrollbar {
     width: 5px;
 }
-
 .msger-chat::-webkit-scrollbar-track {
     background: transparent;
 }
-
 .msger-chat::-webkit-scrollbar-thumb {
-    background: black;
-    /*aqua;*/
+    background: black; /*aqua;*/
 }
 
 .msg {
@@ -570,30 +571,21 @@ button {
     color: #fff;
 }
 
-.left-msg .msg-caption-bubble {
-    background: var(--left-msg-bg);
-    border-bottom-left-radius: 0;
-    color: #fff;
-}
-
 /* right side */
 
 .right-msg {
     flex-direction: row-reverse;
 }
-
 .right-msg .msg-bubble {
     background: var(--right-msg-bg);
     border-bottom-right-radius: 0;
     color: #fff;
 }
-
 .right-msg .private-msg-bubble {
     background: var(--private-msg-bg);
     border-bottom-right-radius: 0;
     color: #fff;
 }
-
 .right-msg .msg-img {
     margin: 0 0 0 10px;
 }
@@ -613,12 +605,6 @@ button {
 .private-msg-bubble,
 .msg-bubble {
     max-width: 200px;
-    padding: 15px;
-    border-radius: 15px;
-}
-
-.msg-caption-bubble {
-    max-width: 70%;
     padding: 15px;
     border-radius: 15px;
 }
@@ -820,13 +806,10 @@ video {
     object-fit: var(--video-object-fit);
     cursor: pointer;
 }
-
 video:fullscreen {
-    object-fit: contain;
-    /* cover; */
+    object-fit: contain; /* cover; */
     border: var(--elem-border-color);
 }
-
 .video {
     float: left;
     width: 20vw;
@@ -834,41 +817,36 @@ video:fullscreen {
     overflow: hidden;
     position: relative;
 }
-
 .video.one {
     width: 100vw;
     height: 100vh;
 }
-
 .video.two {
     width: 49.6vw;
-    height: 49.6vh;
+    height: 99vh;
     --video-object-fit: cover;
     border: var(--elem-border-color);
     /* --video-object-fit: contain; */
 }
-
 .video.three {
-    width: 33vw;
-    height: 33vh;
+    /* width: 33vw;
+  height: 99vh; */
+    width: 49.6vw;
     --video-object-fit: cover;
     border: var(--elem-border-color);
 }
-
 .video.four {
     width: 49.6vw;
     height: 49vh;
     --video-object-fit: cover;
     border: var(--elem-border-color);
 }
-
 .video.five {
     width: 33vw;
     height: 49vh;
     --video-object-fit: cover;
     border: var(--elem-border-color);
 }
-
 .video.six {
     width: 33vw;
     height: 49vh;
@@ -1004,9 +982,7 @@ video:fullscreen {
 #myPeerNameSetBtn,
 #muteEveryoneBtn,
 #hideEveryoneBtn,
-#lockUnlockRoomBtn,
-#speechRecognitionStart,
-#speechRecognitionStop {
+#lockUnlockRoomBtn {
     padding: 5px;
     border-radius: 5px;
     color: white;
@@ -1014,9 +990,7 @@ video:fullscreen {
 }
 
 #myPeerNameSetBtn:hover,
-#lockUnlockRoomBtn:hover,
-#speechRecognitionStart:hover,
-#speechRecognitionStop:hover {
+#lockUnlockRoomBtn:hover {
     color: var(--hover-color);
     transform: var(--btns-hover-scale);
     transition: all 0.3s ease-in-out;
@@ -1030,15 +1004,13 @@ video:fullscreen {
 }
 
 /* Style the tab */
-
 .tab {
     overflow: hidden;
     border: 1px solid rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 /* Style the buttons inside the tab */
-
 .tab button {
     background-color: inherit;
     float: left;
@@ -1051,7 +1023,6 @@ video:fullscreen {
 }
 
 /* Change background color of buttons on hover */
-
 .tab button:hover {
     background-color: transparent;
     color: var(--hover-color);
@@ -1059,13 +1030,11 @@ video:fullscreen {
 }
 
 /* Create an active/current tablink class */
-
 .tab button.active {
-    background-color: rgb(30 29 29);
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 /* Style the tab content */
-
 .tabcontent {
     display: none;
     padding: 6px 12px;
@@ -1074,7 +1043,6 @@ video:fullscreen {
 }
 
 /* on open display devices tab */
-
 #tabDevices {
     display: block;
 }
@@ -1091,12 +1059,10 @@ video:fullscreen {
     color: white !important;
     background-color: transparent !important;
 }
-
 .swal2-file {
     color: white !important;
     background-color: transparent !important;
 }
-
 .swal2-html-container {
     color: rgb(165, 165, 165) !important;
     background-color: transparent !important;
@@ -1107,7 +1073,6 @@ video:fullscreen {
     font-size: 0.8rem !important;
 }
 */
-
 .swal2-select {
     background-color: black !important;
     color: white !important;
@@ -1137,7 +1102,6 @@ video:fullscreen {
         opacity: 0.5;
     }
 }
-
 @keyframes pulsate {
     0% {
         opacity: 0.5;
@@ -1149,7 +1113,6 @@ video:fullscreen {
         opacity: 0.5;
     }
 }
-
 @-webkit-keyframes pulsate {
     0% {
         opacity: 0.5;
@@ -1204,7 +1167,6 @@ video:fullscreen {
     background-color: transparent;
     transition: background 0.23s;
 }
-
 #sendAbortBtn:hover {
     color: rgb(255, 0, 0);
     transform: var(--btns-hover-scale);
@@ -1247,7 +1209,6 @@ progress {
     -moz-animation-duration: 1s;
     animation-duration: 1s;
 }
-
 #videoUrlHeader {
     position: absolute;
     display: flex;
@@ -1258,7 +1219,6 @@ progress {
     border-radius: 5px;
     background-color: rgba(0, 0, 0, 0.7);
 }
-
 #videoUrlHeader button {
     height: 30px;
     width: 30px;
@@ -1269,13 +1229,11 @@ progress {
     color: white;
     background: black;
 }
-
 #videoUrlHeader button:hover {
     color: var(--hover-color);
     transform: var(--btns-hover-scale);
     transition: all 0.3s ease-in-out;
 }
-
 #videoUrlIframe {
     width: var(--iframe-width);
     height: var(--iframe-height);
@@ -1340,26 +1298,6 @@ progress {
     margin-left: auto;
     margin-right: auto;
     width: 50%;
-}
-
-.speechbar {
-    width: 1%;
-    height: 20%;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    border-radius: 10%;
-}
-
-.bar {
-    width: 100%;
-    display: block;
-    font-family: arial;
-    font-size: 12px;
-    background-color: #19bb5c;
-    color: #fff;
-    position: absolute;
-    bottom: 0;
 }
 
 /*

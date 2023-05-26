@@ -457,7 +457,7 @@ function getPeerGeoLocation() {
  */
 function getSignalingServer() {
     if (isHttps) {
-        return 'https://' + 'webrtc-unime.ddns.net' + ':' + signalingServerPort;
+        return 'https://' + '192.168.44.181' + ':' + signalingServerPort;
         // outside of localhost change it with YOUR-SERVER-DOMAIN
     }
     return (
@@ -537,8 +537,7 @@ function initClientPeer() {
     signalingSocket = io(signalingServer);
 
     // on receiving data from signaling server...
-    console.log("UNO",peerConnection);
-    console.log("UNO",peerConnections);
+
 
 
 
@@ -810,7 +809,7 @@ function handleOnTrack(peer_id, peers) {
     peerConnections[peer_id].ontrack = (event) => {
         console.log('handleOnTrack', event);
         if (event.track.kind === 'video') {
-            //loadRemoteMediaStream(event.streams[0], peers, peer_id);
+            loadRemoteMediaStream(event.streams[0], peers, peer_id);
         }
     };
 }
@@ -1057,8 +1056,8 @@ function setButtonsBarPosition(position) {
  * @param {*} errorback
  */
 
-function startscreen() {
-    handleConnect();
+      function startscreen() {
+        handleConnect();
     }
 
 function setupLocalMedia(callback, errorback) {
@@ -1080,9 +1079,9 @@ function setupLocalMedia(callback, errorback) {
 
     const constraints = {
         video:{
-            width: 800,
-            height: 450,
-            frameRate: 5,
+            width: 300,
+            height: 169,
+            frameRate: 1,
         }
       };
     
@@ -1331,12 +1330,11 @@ function loadRemoteMediaStream(stream, peers, peer_id) {
     remoteVideoWrap.className = 'video';
 
 
-
     // add elements to videoWrap div
-    //remoteVideoWrap.appendChild(remoteStatusMenu);
-    //remoteVideoWrap.appendChild(remoteVideoAvatarImage);
-    //remoteVideoWrap.appendChild(remoteMedia);
-    //document.body.appendChild(remoteVideoWrap);
+    remoteVideoWrap.appendChild(remoteStatusMenu);
+    remoteVideoWrap.appendChild(remoteVideoAvatarImage);
+    remoteVideoWrap.appendChild(remoteMedia);
+    document.body.appendChild(remoteVideoWrap);
 
 
     // attachMediaStream is a part of the adapter.js library
@@ -2055,7 +2053,7 @@ function stopLocalAudioTrack() {
  * https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getDisplayMedia
  */
 function toggleScreenSharing() {
-    screenMaxFrameRate = parseInt(2);
+    screenMaxFrameRate = parseInt(5);
     const constraints = {
         video: { frameRate: { max: screenMaxFrameRate } },
     }; // true | { frameRate: { max: screenMaxFrameRate } }
