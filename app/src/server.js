@@ -66,11 +66,11 @@ if (isHttps) {
     };
     server = https.createServer(options, app);
     io = new Server().listen(server);
-    host = 'https://' + '192.168.44.181' + ':' + port;
+    host = 'https://' + '212.189.207.199' + ':' + port;
 } else {
     server = http.createServer(app);
     io = new Server().listen(server);
-    host = 'http://' + 'localhost' + ':' + port;
+    host = 'http://' + '212.189.207.199' + ':' + port;
 }
 
 const ngrok = require('ngrok');
@@ -258,7 +258,7 @@ app.post([apiBasePath + '/meeting'], (req, res) => {
  * @returns meeting Room URL
  */
 function getMeetingURL(host) {
-    return 'https' + (host.includes('192.168.44.181') ? '' : 's') + '://' + host;
+    return 'https' + (host.includes('212.189.207.199') ? '' : 's') + '://' + host;
 }
 
 // end of MiroTalk API v1
