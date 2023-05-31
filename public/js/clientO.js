@@ -642,7 +642,7 @@ function getPeerGeoLocation() {
 function getSignalingServer() {
     if (isHttps) {
         console.log("IS_HTTP");
-        return 'https://' + '192.168.44.181' + ':' + signalingServerPort;
+        return 'https://' + '212.189.207.199' + ':' + signalingServerPort;
         // outside of localhost change it with YOUR-SERVER-DOMAIN
     }
     return (

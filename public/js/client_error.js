@@ -457,15 +457,15 @@ function getPeerGeoLocation() {
  */
 function getSignalingServer() {
     if (isHttps) {
-        return 'https://' + '192.168.44.181' + ':' + signalingServerPort;
+        return 'https://' + '212.189.207.199' + ':' + signalingServerPort;
         // outside of localhost change it with YOUR-SERVER-DOMAIN
     }
     return (
         'http' +
-        (location.hostname == 'localhost' ? '' : 's') +
+        (location.hostname == '212.189.207.199' ? '' : 's') +
         '://' +
         location.hostname +
-        (location.hostname == 'localhost' ? ':' + signalingServerPort : '')
+        (location.hostname == '212.189.207.199' ? ':' + signalingServerPort : '')
     );
 }
 
